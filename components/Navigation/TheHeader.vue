@@ -29,7 +29,6 @@ export default {
 <style scoped lang="scss">
 .header-container {
   height: 60px;
-  margin-bottom: 15px;
 }
 .the-header {
   width: 100%;

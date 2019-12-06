@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   mode: 'universal',
   /*
@@ -21,10 +23,6 @@ module.exports = {
    */
   loading: { color: '#fff' },
   /*
-   ** Global CSS
-   */
-  css: ['~assets/styles/main.scss'],
-  /*
    ** Plugins to load before mounting the App
    */
   plugins: [],
@@ -35,6 +33,7 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     '@nuxtjs/dotenv',
+    '@nuxtjs/style-resources',
   ],
   /*
    ** Nuxt.js modules
@@ -49,7 +48,9 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    https: true,
+  },
   /*
    ** Build configuration
    */
@@ -62,5 +63,11 @@ module.exports = {
   pageTransition: {
     name: 'fade',
     mode: 'out-in',
+  },
+  env: {
+    mongooseURL: process.env.mongooseURL,
+  },
+  styleResources: {
+    scss: ['~assets/styles/main.scss', '~assets/styles/_variables.scss'],
   },
 };

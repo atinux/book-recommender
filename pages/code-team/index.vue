@@ -1,27 +1,25 @@
 <template>
   <div class="code-team">
-    <img src="@/assets/images/OscarSelfie.jpg" />
-    <img src="@/assets/images/Jim.jpg" />
+    <!-- <h1>HELLO</h1> -->
+    <section v-for="(member, index) in teamMembers" :key="index" class="member">
+      <Member :name="member.name" :imgSrc="member.imgSrc" :about="member.about" />
+    </section>
   </div>
 </template>
 
 <script>
-export default {};
+import Member from '@/components/CodeTeam/Member';
+
+export default {
+  components: {
+    Member,
+  },
+  computed: {
+    teamMembers() {
+      return this.$store.state.codeTeam.members;
+    },
+  },
+};
 </script>
 
-<style lang="scss" scoped>
-.code-team {
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: center;
-
-  img {
-    transform: rotate(0deg); // this fixes a glitch that causes image to rotate needlessly
-    align-self: center;
-    height: $imgHeight;
-    padding-top: $underHeaderGap;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

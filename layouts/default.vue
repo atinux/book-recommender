@@ -23,7 +23,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 html {
   font-family: 'Open Sans', sans-serif;
 }

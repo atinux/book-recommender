@@ -68,6 +68,6 @@ module.exports = {
     mongooseURL: process.env.mongooseURL,
   },
   styleResources: {
-    scss: ['~assets/styles/main.scss', '~assets/styles/_variables.scss'],
+    scss: ['~assets/styles/main.scss'],
   },
 };

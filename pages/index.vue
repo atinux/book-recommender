@@ -11,9 +11,6 @@ export default {
 </script>
 
 <style lang="scss">
-// * {
-//   border: 1px solid red;
-// }
 .container {
   margin: 0 auto;
   display: flex;
@@ -25,7 +22,6 @@ export default {
     transform: rotate(90deg); // this fixes a glitch that causes image to rotate needlessly
     padding-top: $underHeaderGap; // these 2 padding lines help to fix the placement of the image caused by the needless rotation
     padding-left: $underHeaderGap * 5;
-    align-self: center;
     height: $imgHeight;
   }
 }

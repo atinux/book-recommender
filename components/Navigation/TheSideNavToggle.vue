@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .drawer-toggle {
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@
   width: 35px;
   cursor: pointer;
 }
-@media (min-width: 768px) {
+@media (min-width: $tabletP) {
   .drawer-toggle {
     display: none;
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="member">
-    <img src="@/assets/images/Jim.jpg" alt="Jim" />
+    <img src="@/assets/images/Jim.jpg" alt="Jim" title="Jim Strother" />
     <h3>Jim</h3>
     <p>
       As a mostly self-taught programmer, I'm always on the lookout for great and interesting

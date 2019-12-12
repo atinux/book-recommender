@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img src="@/assets/images/OscarPark.jpg" />
+    <img src="@/assets/images/OscarPark.jpg" alt="Oscar in the park" title="I love the park!" />
   </div>
 </template>
 

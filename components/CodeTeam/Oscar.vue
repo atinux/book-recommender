@@ -1,6 +1,6 @@
 <template>
   <div class="member">
-    <img src="@/assets/images/OscarSelfie.jpg" alt="Oscar!" />
+    <img src="@/assets/images/OscarSelfie.jpg" alt="Oscar!" title="I took a selfie!" />
     <h3>Oscar</h3>
     <p>
       Hi, I'm Oscar! I had a great idea to help my people find a new book to read! So, I built this!

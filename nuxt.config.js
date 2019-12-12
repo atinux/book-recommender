@@ -55,6 +55,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
+    watch: ['api'],
     /*
      ** You can extend webpack config here
      */
@@ -65,8 +66,10 @@ module.exports = {
     mode: 'out-in',
   },
   env: {
-    mongooseURL: process.env.mongooseURL,
+    MONGOOSE_URL: process.env.MONGOOSE_URL,
+    TASTE_DIVE_API_KEY: process.env.TASTE_DIVE_API_KEY,
   },
+  serverMiddleware: ['~/api'],
   styleResources: {
     scss: ['~assets/styles/main.scss'],
   },

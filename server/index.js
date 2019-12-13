@@ -1,7 +1,10 @@
 const express = require('express');
+const cors = require('cors');
+// const axios = require('axios');
 const consola = require('consola');
 const { Nuxt, Builder } = require('nuxt');
 const app = express();
+// const router = express.Router();
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js');
@@ -21,8 +24,20 @@ async function start() {
     await nuxt.ready();
   }
 
+  // Give app ability to parse json
+  app.use(express.json());
+
+  // Give app ability to get past CORS issues
+  app.use(cors());
+
   // Give nuxt middleware to express
   app.use(nuxt.render);
+
+  // const recommendationsURL = `https://tastedive.com/api/similar?q=${title}&type=books&info=1&k=${process.env.TASTE_DIVE_API_KEY}`;
+
+  // router.get(recommendationsURL, (req, res) => {
+  //   res.json();
+  // });
 
   // Listen the server
   app.listen(port, host);

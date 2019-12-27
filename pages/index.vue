@@ -4,7 +4,7 @@
     <br />
     <form>
       <label for="title">Book Title:</label>
-      <input type="text" name="title" class="title" />
+      <input v-model="title" type="text" name="title" class="title" />
       <button @click.prevent="submit" class="submit">Find a Book!</button>
     </form>
   </div>
@@ -13,8 +13,15 @@
 <script>
 export default {
   components: {},
+  data() {
+    return {
+      title: '',
+    };
+  },
   methods: {
-    submit() {},
+    submit() {
+      this.$store.dispatch('fetchBookTitles', this.title);
+    },
   },
 };
 </script>

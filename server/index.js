@@ -35,7 +35,7 @@ async function start() {
 
   // const recommendationsURL = `https://tastedive.com/api/similar?q=${title}&type=books&info=1&k=${process.env.TASTE_DIVE_API_KEY}`;
 
-  // router.get(recommendationsURL, (req, res) => {
+  // axios.get(recommendationsURL, (req, res) => {
   //   res.json();
   // });
 

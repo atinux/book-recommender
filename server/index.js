@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-// const axios = require('axios');
 const consola = require('consola');
 const { Nuxt, Builder } = require('nuxt');
 const app = express();
@@ -35,7 +34,7 @@ async function start() {
 
   // const recommendationsURL = `https://tastedive.com/api/similar?q=${title}&type=books&info=1&k=${process.env.TASTE_DIVE_API_KEY}`;
 
-  // axios.get(recommendationsURL, (req, res) => {
+  // app.get(recommendationsURL, (req, res) => {
   //   res.json();
   // });
 

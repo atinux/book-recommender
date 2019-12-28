@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const express = require('express');
+
 module.exports = {
   mode: 'universal',
   /*
@@ -50,6 +52,7 @@ module.exports = {
    */
   axios: {
     https: true,
+    credentials: false,
   },
   /*
    ** Build configuration
@@ -69,7 +72,7 @@ module.exports = {
     MONGOOSE_URL: process.env.MONGOOSE_URL,
     TASTE_DIVE_API_KEY: process.env.TASTE_DIVE_API_KEY,
   },
-  serverMiddleware: ['~/api'],
+  serverMiddleware: [express.json(), '~api'],
   styleResources: {
     scss: ['~assets/styles/main.scss'],
   },

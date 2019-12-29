@@ -21,6 +21,6 @@ router.post('/title', (req, res) => {
 });
 
 module.exports = {
-  path: '/api',
+  path: '/title',
   handler: router,
 };

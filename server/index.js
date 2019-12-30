@@ -12,6 +12,8 @@ const router = express.Router();
 const config = require('../nuxt.config.js');
 config.dev = process.env.NODE_ENV !== 'production';
 
+const { IOServer } = require('./io');
+
 async function start() {
   // Init Nuxt.js
   const nuxt = new Nuxt(config);
@@ -41,7 +43,7 @@ async function start() {
     socket.on('titleFromUser', (data) => {
       titleFromUser = data;
       consola.ready({
-        message: `titleFromUser: ${titleFromUser}`,
+        message: `titleFromUser on server: ${titleFromUser}`,
         badge: true,
       });
     });
@@ -57,10 +59,15 @@ async function start() {
   });
 
   // Listen to the server
-  app.listen(port, host);
-  consola.ready({
-    message: `Server listening on http://${host}:${port}`,
-    badge: true,
+  server.listen(port, host, () => {
+    consola.ready({
+      message: `Server listening on http://${host}:${port}`,
+      badge: true,
+    });
+
+    // Start the socket.io server
+    const ioServer = IOServer({ host, port, server });
+    ioServer.start();
   });
 }
 start();

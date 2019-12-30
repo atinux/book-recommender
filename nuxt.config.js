@@ -58,6 +58,7 @@ module.exports = {
           actions: [],
           emitBacks: ['titleFromUser'],
         },
+        namespaces: {},
       },
     ],
   },

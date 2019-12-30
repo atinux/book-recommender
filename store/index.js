@@ -9,7 +9,7 @@ export const mutations = {
   SET_TITLE_FROM_USER(state, titleFromUser) {
     state.titleFromUser = titleFromUser;
     consola.ready({
-      message: `titleFromUser: ${titleFromUser}`,
+      message: `titleFromUser in store: ${titleFromUser}`,
       badge: true,
     });
   },

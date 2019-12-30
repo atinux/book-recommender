@@ -30,7 +30,7 @@
     "express": "^4.16.4",
     "mongoose": "^5.8.3",
     "nuxt": "^2.11.0",
-    "nuxt-socket-io": "^1.0.7",
+    "nuxt-socket-io": "^1.0.8",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {

@@ -35,19 +35,19 @@ async function start() {
   // Give nuxt middleware to express
   app.use(nuxt.render);
 
-  let title = '';
+  let titleFromUser = '';
 
   io.on('connection', (socket) => {
     socket.on('titleFromUser', (data) => {
-      title = data;
+      titleFromUser = data;
       consola.ready({
-        message: `titleFromUser: ${title}`,
+        message: `titleFromUser: ${titleFromUser}`,
         badge: true,
       });
     });
   });
 
-  const recommendationsURL = `https://tastedive.com/api/similar?q=${title}&type=books&info=1&k=${process.env.TASTE_DIVE_API_KEY}`;
+  const recommendationsURL = `https://tastedive.com/api/similar?q=${titleFromUser}&type=books&info=1&k=${process.env.TASTE_DIVE_API_KEY}`;
 
   router.get(recommendationsURL, (req, res) => {
     consola.ready({

@@ -47,6 +47,20 @@ module.exports = {
     '@nuxtjs/auth',
     'nuxt-socket-io',
   ],
+  io: {
+    sockets: [
+      {
+        name: 'index',
+        url: 'http://localhost:3000',
+        default: true,
+        vuex: {
+          mutations: [{ newTitles: 'SET_NEW_TITLES' }],
+          actions: [],
+          emitBacks: ['titleFromUser'],
+        },
+      },
+    ],
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -75,19 +89,5 @@ module.exports = {
   serverMiddleware: [express.json()],
   styleResources: {
     scss: ['~assets/styles/main.scss'],
-  },
-  io: {
-    sockets: [
-      {
-        name: 'home',
-        url: process.env.HOST || 'http://localhost:3000',
-        default: true,
-        vuex: {
-          mutations: [{ newTitles: 'SET_NEW_TITLES' }],
-          actions: [],
-          emitBacks: ['titleFromUser'],
-        },
-      },
-    ],
   },
 };

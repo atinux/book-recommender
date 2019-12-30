@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   components: {},
   data() {
@@ -18,9 +20,10 @@ export default {
       titleFromUser: '',
     };
   },
+  computed: mapState(['newTitles']),
   methods: {
     submit() {
-      this.$store.dispatch('fetchBookTitles', this.titleFromUser);
+      this.$store.commit('SET_TITLE_FROM_USER', this.titleFromUser);
     },
   },
 };

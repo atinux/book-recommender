@@ -1,30 +1,19 @@
-// store for the main page
-const consola = require('consola');
+import consola from 'consola';
 
 export const state = () => ({
+  titleFromUser: '',
   newTitles: [],
 });
 
 export const mutations = {
-  newTitles(state, newTitles) {
-    state.newTitles = newTitles;
+  SET_TITLE_FROM_USER(state, titleFromUser) {
+    state.titleFromUser = titleFromUser;
+    consola.ready({
+      message: `titleFromUser: ${titleFromUser}`,
+      badge: true,
+    });
   },
-};
-
-export const actions = {
-  async fetchBookTitles({ commit }, titleFromUser) {
-    try {
-      const newTitles = await this.$axios.$post('/title', titleFromUser);
-      consola.ready({
-        message: `newTitles: ${newTitles}`,
-        badge: true,
-      });
-      commit('newTitles', newTitles);
-    } catch {
-      consola.error({
-        message: 'Something went wrong',
-        badge: true,
-      });
-    }
+  SET_NEW_TITLES(state, newTitles) {
+    state.newTitles = newTitles;
   },
 };

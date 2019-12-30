@@ -29,7 +29,9 @@
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
     "mongoose": "^5.8.3",
-    "nuxt": "^2.11.0"
+    "nuxt": "^2.11.0",
+    "nuxt-socket-io": "^1.0.7",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",

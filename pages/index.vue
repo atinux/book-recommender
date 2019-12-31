@@ -21,15 +21,9 @@ export default {
     };
   },
   computed: mapState(['newTitles']),
-  mounted() {
-    this.socket = this.$nuxtSocket({
-      channel: '/index',
-      reconnection: false,
-    });
-  },
   methods: {
     submit() {
-      this.$store.commit('SET_TITLE_FROM_USER', this.titleFromUser);
+      this.$store.dispatch('FETCH_BOOK_TITLES', this.titleFromUser);
     },
   },
 };

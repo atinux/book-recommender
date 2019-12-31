@@ -5,14 +5,11 @@ const consola = require('consola');
 const { Nuxt, Builder } = require('nuxt');
 const app = express();
 const server = http.Server(app);
-const io = require('socket.io')(server);
-const router = express.Router();
+// const router = express.Router();
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js');
 config.dev = process.env.NODE_ENV !== 'production';
-
-const { IOServer } = require('./io');
 
 async function start() {
   // Init Nuxt.js
@@ -37,26 +34,14 @@ async function start() {
   // Give nuxt middleware to express
   app.use(nuxt.render);
 
-  let titleFromUser = '';
+  // const recommendationsURL = `https://tastedive.com/api/similar?q=${titleFromUser}&type=books&info=1&k=${process.env.TASTE_DIVE_API_KEY}`;
 
-  io.on('connection', (socket) => {
-    socket.on('titleFromUser', (data) => {
-      titleFromUser = data;
-      consola.ready({
-        message: `titleFromUser on server: ${titleFromUser}`,
-        badge: true,
-      });
-    });
-  });
-
-  const recommendationsURL = `https://tastedive.com/api/similar?q=${titleFromUser}&type=books&info=1&k=${process.env.TASTE_DIVE_API_KEY}`;
-
-  router.get(recommendationsURL, (req, res) => {
-    consola.ready({
-      message: res.json(),
-      badge: true,
-    });
-  });
+  // router.get(recommendationsURL, (req, res) => {
+  //   consola.ready({
+  //     message: res.json(),
+  //     badge: true,
+  //   });
+  // });
 
   // Listen to the server
   server.listen(port, host, () => {
@@ -64,10 +49,6 @@ async function start() {
       message: `Server listening on http://${host}:${port}`,
       badge: true,
     });
-
-    // Start the socket.io server
-    const ioServer = IOServer({ host, port, server });
-    ioServer.start();
   });
 }
 start();

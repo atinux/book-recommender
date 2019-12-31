@@ -45,23 +45,7 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/auth',
-    'nuxt-socket-io',
   ],
-  io: {
-    sockets: [
-      {
-        name: 'index',
-        url: 'http://localhost:3000',
-        default: true,
-        vuex: {
-          mutations: [{ newTitles: 'SET_NEW_TITLES' }],
-          actions: [],
-          emitBacks: ['titleFromUser'],
-        },
-        namespaces: {},
-      },
-    ],
-  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -87,7 +71,7 @@ module.exports = {
     MONGOOSE_URL: process.env.MONGOOSE_URL,
     TASTE_DIVE_API_KEY: process.env.TASTE_DIVE_API_KEY,
   },
-  serverMiddleware: [express.json()],
+  serverMiddleware: [express.json(), { path: '/test', handler: '~api/index.js' }],
   styleResources: {
     scss: ['~assets/styles/main.scss'],
   },

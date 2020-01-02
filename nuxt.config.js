@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const express = require('express');
+const bodyParser = require('body-parser');
 
 module.exports = {
   mode: 'universal',
@@ -52,6 +52,7 @@ module.exports = {
    */
   axios: {
     https: true,
+    baseURL: process.env.BASE_URL || 'http://localhost:3000',
   },
   /*
    ** Build configuration
@@ -71,7 +72,7 @@ module.exports = {
     MONGOOSE_URL: process.env.MONGOOSE_URL,
     TASTE_DIVE_API_KEY: process.env.TASTE_DIVE_API_KEY,
   },
-  serverMiddleware: [express.json(), { path: '/test', handler: '~api/index.js' }],
+  serverMiddleware: [bodyParser.json(), '~api'],
   styleResources: {
     scss: ['~assets/styles/main.scss'],
   },

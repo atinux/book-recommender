@@ -18,10 +18,11 @@ export const actions = {
         badge: true,
       });
       const { data } = await this.$axios.$post('/title', titleFromUser);
-      commit('newTitles', data);
-    } catch {
+      consola.ready(data);
+      // commit('newTitles', data);
+    } catch (error) {
       consola.error({
-        message: 'Something went wrong',
+        message: `FETCH_BOOK_TITLES: Something went wrong: ${error}`,
         badge: true,
       });
     }

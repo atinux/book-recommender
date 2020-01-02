@@ -1,10 +1,10 @@
-const http = require('http');
+const path = require('path');
 const express = require('express');
+const bodyparser = require('body-parser');
 const cors = require('cors');
 const consola = require('consola');
 const { Nuxt, Builder } = require('nuxt');
 const app = express();
-const server = http.Server(app);
 // const router = express.Router();
 
 // Import and Set Nuxt.js options
@@ -25,8 +25,12 @@ async function start() {
     await nuxt.ready();
   }
 
+  app.get('/title', (req, res) => {
+    res.sendFile(path.join(`${__dirname}/title`));
+  });
+
   // Give app ability to parse json
-  app.use(express.json());
+  app.use(bodyparser.json());
 
   // Give app ability to get past CORS issues
   app.use(cors());
@@ -34,9 +38,16 @@ async function start() {
   // Give nuxt middleware to express
   app.use(nuxt.render);
 
+  app.get('/title', (req, res) => {
+    consola.ready({
+      message: `title from frontend: ${res.json()}`,
+      badge: true,
+    });
+  });
+
   // const recommendationsURL = `https://tastedive.com/api/similar?q=${titleFromUser}&type=books&info=1&k=${process.env.TASTE_DIVE_API_KEY}`;
 
-  // router.get(recommendationsURL, (req, res) => {
+  // app.get(recommendationsURL, (req, res) => {
   //   consola.ready({
   //     message: res.json(),
   //     badge: true,
@@ -44,7 +55,7 @@ async function start() {
   // });
 
   // Listen to the server
-  server.listen(port, host, () => {
+  app.listen(port, host, () => {
     consola.ready({
       message: `Server listening on http://${host}:${port}`,
       badge: true,

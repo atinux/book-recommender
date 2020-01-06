@@ -1,5 +1,9 @@
 import consola from 'consola';
 
+const axiosHeaders = {
+  'Content-Type': 'application/json',
+};
+
 export const state = () => ({
   newTitles: [],
 });
@@ -17,7 +21,11 @@ export const actions = {
         message: `titleFromUser in store action: ${titleFromUser}`,
         badge: true,
       });
-      const { data } = await this.$axios.$post('/title', titleFromUser);
+      const { data } = await this.$axios.$post(
+        '/title',
+        { titleFromUser },
+        { headers: axiosHeaders },
+      );
       consola.ready(data);
       // commit('newTitles', data);
     } catch (error) {

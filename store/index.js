@@ -1,9 +1,5 @@
 import consola from 'consola';
 
-const axiosHeaders = {
-  'Content-Type': 'application/json',
-};
-
 export const state = () => ({
   newTitles: [],
 });
@@ -24,10 +20,14 @@ export const actions = {
       const { data } = await this.$axios.$post(
         '/title',
         { titleFromUser },
-        { headers: axiosHeaders },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
       );
       consola.ready(data);
-      // commit('newTitles', data);
+      commit('newTitles', data);
     } catch (error) {
       consola.error({
         message: `FETCH_BOOK_TITLES: Something went wrong: ${error}`,

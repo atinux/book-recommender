@@ -5,6 +5,7 @@ const cors = require('cors');
 const consola = require('consola');
 const { Nuxt, Builder } = require('nuxt');
 const app = express();
+const axios = require('axios');
 // const router = express.Router();
 
 // Import and Set Nuxt.js options
@@ -45,14 +46,14 @@ async function start() {
     });
   });
 
-  // const recommendationsURL = `https://tastedive.com/api/similar?q=${titleFromUser}&type=books&info=1&k=${process.env.TASTE_DIVE_API_KEY}`;
+  const recommendationsURL = `https://tastedive.com/api/similar?q=and+then+there+were+none&type=books&info=1&k=${process.env.TASTE_DIVE_API_KEY}`;
 
-  // app.get(recommendationsURL, (req, res) => {
-  //   consola.ready({
-  //     message: res.json(),
-  //     badge: true,
-  //   });
-  // });
+  axios.get(recommendationsURL, (req, res) => {
+    consola.ready({
+      message: res.json(),
+      badge: true,
+    });
+  });
 
   // Listen to the server
   app.listen(port, host, () => {

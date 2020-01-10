@@ -1,6 +1,11 @@
+const consola = require('consola');
 require('dotenv').config();
 
 const bodyParser = require('body-parser');
+consola.ready({
+  message: `top of nuxt config: ${process.env.BASE_URL}`,
+  badge: true,
+});
 
 module.exports = {
   mode: 'universal',
@@ -58,7 +63,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    watch: ['api'],
+    watch: ['api/title'],
     /*
      ** You can extend webpack config here
      */
@@ -72,7 +77,7 @@ module.exports = {
     MONGOOSE_URL: process.env.MONGOOSE_URL,
     TASTE_DIVE_API_KEY: process.env.TASTE_DIVE_API_KEY,
   },
-  serverMiddleware: [bodyParser.json(), '~api'],
+  serverMiddleware: [bodyParser.json(), '~api/title'],
   styleResources: {
     scss: ['~assets/styles/main.scss'],
   },

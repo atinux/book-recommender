@@ -1,11 +1,6 @@
-const consola = require('consola');
 require('dotenv').config();
 
 const bodyParser = require('body-parser');
-consola.ready({
-  message: `top of nuxt config: ${process.env.BASE_URL}`,
-  badge: true,
-});
 
 module.exports = {
   mode: 'universal',

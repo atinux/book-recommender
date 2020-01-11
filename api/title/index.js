@@ -4,7 +4,7 @@ const titleRouter = require('express').Router();
 titleRouter.get('/title', (req, res) => {
   res
     .status(200)
-    .json({ title: req.body.title })
+    .json({ title: req.body })
     .then((data) => {
       consola.ready({
         message: `get title is ${data}`,
@@ -23,7 +23,7 @@ titleRouter.get('/title', (req, res) => {
 titleRouter.post('/title', (req, res) => {
   res
     .status(200)
-    .json({ title: req.body.title })
+    .json({ title: req.body })
     .then((data) => {
       consola.ready({
         message: `post title is ${data}`,

@@ -14,7 +14,7 @@ export const actions = {
   async FETCH_BOOK_TITLES({ commit }, titleFromUser) {
     try {
       consola.ready({
-        message: `titleFromUser in store action: ${titleFromUser}`,
+        message: `'FETCH_BOOK_TITLES' titleFromUser: ${titleFromUser}`,
         badge: true,
       });
       const { data } = await this.$axios.$post(
@@ -27,12 +27,13 @@ export const actions = {
         },
       );
       consola.ready(data);
-      commit('newTitles', data);
+      commit('SET_NEW_TITLES', data);
     } catch (error) {
       consola.error({
         message: `FETCH_BOOK_TITLES: Something went wrong: ${error}`,
         badge: true,
       });
+      throw new Error(error);
     }
   },
 };

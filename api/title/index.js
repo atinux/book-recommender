@@ -1,33 +1,42 @@
-const express = require('express');
 const consola = require('consola');
+const titleRouter = require('express').Router();
 
-const router = express.Router();
-// const app = express();
-
-// router.use((req, res, next) => {
-//   Object.setPrototypeOf(req, app.request);
-//   Object.setPrototypeOf(res, app.response);
-//   req.res = res;
-//   res.req = req;
-//   next();
-// });
-
-router.post('/title', (req, res) => {
-  try {
-    consola.ready({
-      message: `Title is ${req.body.title}`,
-      badge: true,
+titleRouter.get('/title', (req, res) => {
+  res
+    .status(200)
+    .json({ title: req.body.title })
+    .then((data) => {
+      consola.ready({
+        message: `get title is ${data}`,
+        badge: true,
+      });
+    })
+    .catch((error) => {
+      consola.error({
+        message: `~api/title get Something went wrong: ${error}`,
+        badge: true,
+      });
+      throw new Error(error);
     });
-    res.status(200).json({ title: req.body.title });
-  } catch (error) {
-    consola.error({
-      message: `~api/title Something went wrong: ${error}`,
-      badge: true,
-    });
-  }
 });
 
-module.exports = {
-  path: '/title',
-  handler: router,
-};
+titleRouter.post('/title', (req, res) => {
+  res
+    .status(200)
+    .json({ title: req.body.title })
+    .then((data) => {
+      consola.ready({
+        message: `post title is ${data}`,
+        badge: true,
+      });
+    })
+    .catch((error) => {
+      consola.error({
+        message: `~api/title post Something went wrong: ${error}`,
+        badge: true,
+      });
+      throw new Error(error);
+    });
+});
+
+module.exports = titleRouter;

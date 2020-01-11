@@ -1,4 +1,3 @@
-const path = require('path');
 const express = require('express');
 const bodyparser = require('body-parser');
 const cors = require('cors');
@@ -6,7 +5,8 @@ const consola = require('consola');
 const { Nuxt, Builder } = require('nuxt');
 const app = express();
 const axios = require('axios');
-// const router = express.Router();
+
+const titleRouter = require('../api/title/index');
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js');
@@ -26,10 +26,6 @@ async function start() {
     await nuxt.ready();
   }
 
-  app.get('/title', (req, res) => {
-    res.sendFile(path.join(`${__dirname}/title`));
-  });
-
   // Give app ability to parse json
   app.use(bodyparser.json());
 
@@ -39,19 +35,21 @@ async function start() {
   // Give nuxt middleware to express
   app.use(nuxt.render);
 
+  app.use('/title', titleRouter);
+
   app.get('/title', (req, res) => {
     consola.ready({
       message: `title from frontend: ${res.json()}`,
       badge: true,
     });
-  });
 
-  const recommendationsURL = `https://tastedive.com/api/similar?q=and+then+there+were+none&type=books&info=1&k=${process.env.TASTE_DIVE_API_KEY}`;
+    const recommendationsURL = `https://tastedive.com/api/similar?q=and+then+there+were+none&type=books&info=1&k=${process.env.TASTE_DIVE_API_KEY}`;
 
-  axios.get(recommendationsURL, (req, res) => {
-    consola.ready({
-      message: res.json(),
-      badge: true,
+    axios.get(recommendationsURL, (req, res) => {
+      consola.ready({
+        message: `from server/index.js: ${res.json()}`,
+        badge: true,
+      });
     });
   });
 

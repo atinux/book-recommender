@@ -1,7 +1,5 @@
 require('dotenv').config();
 
-const bodyParser = require('body-parser');
-
 module.exports = {
   mode: 'universal',
   /*
@@ -71,7 +69,7 @@ module.exports = {
   env: {
     TASTE_DIVE_API_KEY: process.env.TASTE_DIVE_API_KEY,
   },
-  serverMiddleware: [bodyParser.json(), '~api/title'],
+  serverMiddleware: ['~api/title'],
   styleResources: {
     scss: ['~assets/styles/main.scss'],
   },

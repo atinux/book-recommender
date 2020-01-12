@@ -1,5 +1,15 @@
 const consola = require('consola');
-const titleRouter = require('express').Router();
+const express = require('express');
+const app = express();
+const titleRouter = express.Router();
+
+titleRouter.use((req, res, next) => {
+  Object.setPrototypeOf(req, app.request);
+  Object.setPrototypeOf(res, app.response);
+  req.res = res;
+  res.req = req;
+  next();
+});
 
 titleRouter.get('/title', (req, res) => {
   res

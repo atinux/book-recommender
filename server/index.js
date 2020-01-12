@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyparser = require('body-parser');
 const cors = require('cors');
 const consola = require('consola');
 const axios = require('axios');
@@ -18,6 +17,15 @@ async function start() {
 
   const { host, port } = nuxt.options.server;
 
+  // Give app ability to parse json
+  app.use(express.json());
+
+  // Give app ability to get past CORS issues
+  app.use(cors());
+
+  // Give nuxt middleware to express
+  app.use(nuxt.render);
+
   // Build only in dev mode
   if (config.dev) {
     const builder = new Builder(nuxt);
@@ -25,15 +33,6 @@ async function start() {
   } else {
     await nuxt.ready();
   }
-
-  // Give app ability to parse json
-  app.use(bodyparser.json());
-
-  // Give app ability to get past CORS issues
-  app.use(cors());
-
-  // Give nuxt middleware to express
-  app.use(nuxt.render);
 
   app.use('/title', titleRouter);
 
@@ -45,12 +44,19 @@ async function start() {
 
     const recommendationsURL = `https://tastedive.com/api/similar?q=and+then+there+were+none&type=books&info=1&k=${process.env.TASTE_DIVE_API_KEY}`;
 
-    axios.get(recommendationsURL, (req, res) => {
-      consola.ready({
-        message: `from server/index.js: ${res.json()}`,
-        badge: true,
+    axios
+      .get(recommendationsURL, (req, res) => {
+        consola.ready({
+          message: `from server/index.js: ${res.json()}`,
+          badge: true,
+        });
+      })
+      .catch((error) => {
+        consola.error({
+          message: `error from axios server ${error} `,
+          badge: true,
+        });
       });
-    });
   });
 
   // Listen to the server
@@ -61,4 +67,5 @@ async function start() {
     });
   });
 }
+
 start();

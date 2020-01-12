@@ -7,7 +7,7 @@ titleRouter.get('/title', (req, res) => {
     .json({ title: req.body })
     .then((data) => {
       consola.ready({
-        message: `get title is ${data}`,
+        message: `~api/title get title is ${data}`,
         badge: true,
       });
     })
@@ -26,7 +26,7 @@ titleRouter.post('/title', (req, res) => {
     .json({ title: req.body })
     .then((data) => {
       consola.ready({
-        message: `post title is ${data}`,
+        message: `~api/title post title is ${data}`,
         badge: true,
       });
     })

@@ -69,7 +69,6 @@ module.exports = {
     mode: 'out-in',
   },
   env: {
-    MONGOOSE_URL: process.env.MONGOOSE_URL,
     TASTE_DIVE_API_KEY: process.env.TASTE_DIVE_API_KEY,
   },
   serverMiddleware: [bodyParser.json(), '~api/title'],

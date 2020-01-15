@@ -39,7 +39,12 @@ async function start() {
 
   app.get('/title', (req, res) => {
     consola.ready({
-      message: `title from frontend: ${res.json()}`,
+      message: `res.json in title endpoint-server: ${res.json()}`,
+      badge: true,
+    });
+
+    consola.ready({
+      message: `req.json in title endpoint-server: ${req.json()}`,
       badge: true,
     });
 

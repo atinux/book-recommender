@@ -13,8 +13,7 @@ titleRouter.use((req, res, next) => {
 
 titleRouter.get('/title', (req, res) => {
   res
-    .status(200)
-    .json({ title: req.body })
+    .json()
     .then((data) => {
       consola.ready({
         message: `~api/title get title is ${data}`,
@@ -32,8 +31,7 @@ titleRouter.get('/title', (req, res) => {
 
 titleRouter.post('/title', (req, res) => {
   res
-    .status(200)
-    .json({ title: req.body })
+    .json()
     .then((data) => {
       consola.ready({
         message: `~api/title post title is ${data}`,

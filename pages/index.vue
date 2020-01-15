@@ -24,6 +24,7 @@ export default {
   methods: {
     submit() {
       this.$store.dispatch('FETCH_BOOK_TITLES', this.titleFromUser);
+      this.titleFromUser = '';
     },
   },
 };

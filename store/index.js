@@ -17,7 +17,7 @@ export const actions = {
         message: `'FETCH_BOOK_TITLES': titleFromUser: ${titleFromUser}`,
         badge: true,
       });
-      const { data } = await this.$axios.$post('/title', { titleFromUser });
+      const { data } = await this.$axios.$get('/api/title', { titleFromUser });
       consola.ready({
         message: `data returned from api: ${data}`,
         badge: true,

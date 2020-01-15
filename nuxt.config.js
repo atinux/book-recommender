@@ -69,8 +69,10 @@ module.exports = {
   env: {
     TASTE_DIVE_API_KEY: process.env.TASTE_DIVE_API_KEY,
   },
-  serverMiddleware: ['~api/title'],
+  serverMiddleware: {
+    '/api/title': '~/api/title.js',
+  },
   styleResources: {
-    scss: ['~assets/styles/main.scss'],
+    scss: ['~/assets/styles/main.scss'],
   },
 };
